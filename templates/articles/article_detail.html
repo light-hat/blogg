@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+    <head>
+        <title>{{article.title}}</title>
+
+        <!-- Primary Meta Tags -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="{{article.meta_description}}">
+        <meta name="keywords" content="{{article.meta_keywords}}">
+        <meta name="title" content="{{article.title}}">
+        <meta name="author" content="{{article.meta_author}}">
+        <meta name="copyright" content="{{article.meta_copyright}}">
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/img/favicon/chip.png' %}">
+
+        <!-- Fontawesome -->
+        <link type="text/css" href="{% static 'vendor/@fortawesome/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+
+        <!-- Pixel CSS -->
+        <link type="text/css" href="{% static 'css/neumorphism.css'%}" rel="stylesheet">
+
+        <!-- Etc -->
+        <link type="text/css" href="{% static 'css/docs.css'%}" rel="stylesheet">
+        <link href="{% static 'css/animate.old.css'%}" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="{% static 'assets/js/jquery-2.0.2.min.js'%}"></script>
+        <link type="text/css" href="{% static 'css/preload.css'%}" rel="stylesheet">
+        <script type="text/javascript" src="{% static 'assets/js/preload.js' %}"></script>
+
+        <link rel="stylesheet" href="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-dune.light.css' %}" />
+        <script src="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
+
+        <link href="{% static 'css/lightbox.css'%}" rel="stylesheet"/>
+
+        <style>
+            .navbar
+            {
+                width: 100%;
+            }
+
+            .background
+            {
+                color: #fff;
+                background: linear-gradient(rgba(0, 0, 0, 0.75) 100%, rgba(255, 255, 255, 0)),
+                    url("{{article.background_image.url}}"), #000;
+                background-position: center center;
+                background-repeat: no-repeat;
+                overflow: hidden;
+            }
+
+            .background a
+            {
+                color: #fff;
+            }
+
+            .background h1
+            {
+                color: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        {% include 'preload/preload.html' %}
+
+        <!-- Что-то забыл(а) здесь? =) -->
+
+        <!-- Navigation panel -->
+        <nav class="navbar navbar-transparent navbar-expand-lg navbar-light navbar-theme-primary headroom z-3">
+            <div class="container position-relative">
+
+                <!-- Logo picture -->
+                <a class="navbar-brand mr-5 mr-lg-5 wow fadeInLeft" data-wow-duration="1s" href="/">
+                    <img class="navbar-brand-dark" src="{% static 'assets/img/favicon/menu.png'%}" alt="pixel logo">
+                    <img class="navbar-brand-light" src="{% static 'assets/img/favicon/menu.png'%}" alt="pixel logo">
+                </a>
+
+                <!-- Block with menu items -->
+                <div class="navbar-collapse collapse wow fadeInLeft" data-wow-duration="1s" id="navbar-default-primary">
+                    <div class="navbar-collapse-header">
+                        <button class="navbar-toggler ml-2" type="button" data-toggle="collapse"
+                        data-target="#navbar-default-primary" aria-controls="navbar-default-primary"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+
+                    <!-- Menu items-->
+                    <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+
+                        <li class="nav-item">
+                            <a href="/articles/" class="nav-link">Каталог публикаций</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+
+                            <a href="#" class="nav-link" data-toggle="dropdown" role="button">
+                                <span class="nav-link-inner-text">Категории</span>
+                                <i class="fas fa-angle-down nav-link-arrow"></i>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                {% for cat in category.all %}
+                                <li><a class="dropdown-item" href="/articles/category/?id={{cat.id}}">{{cat.title}}</a></li>
+                                {% endfor %}
+                            </ul>
+
+                        </li>
+                    </ul>
+
+                </div>
+
+                <!-- The right side -->
+                <div class="d-flex align-items-center wow fadeInRight" data-wow-delay="1s" data-wow-duration="2s">
+
+                    <!-- Social icons -->
+                    <ul class="d-flex list-unstyled mr-4 m-0">
+                        {% for ico in core.icons.all %}
+                        <li class="mr-2">
+                            <a href="{{ ico.link }}" target="_blank" class="btn btn-sm btn-icon-only btn-pill btn-link" data-toggle="tooltip" data-placement="top" data-original-title="{{ ico.tooltip }}">
+                                <span aria-hidden="true" class="{{ ico.icon }}"></span>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    <!-- Button for the menu-->
+                    <button class="navbar-toggler ml-2" type="button" data-toggle="collapse"
+                        data-target="#navbar-default-primary" aria-controls="navbar-default-primary"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- Header of page -->
+        <section class="section-lg background pb-2 overflow-hidden mb-5 border-light border-bottom">
+            <div class="container">
+                <div class="row text-center justify-content-center wow fadeInDown" data-wow-delay="1s" data-wow-duration="3s">
+
+                    <div class="col-12 col-lg-8 pt-5 text-center mb-3">
+                        <h1 class="display-2 font-weight-light pt-3 mb-4">{{ article.title }}</h1>
+                        
+                        <p class="lead font-weight-light mb-3">{{ article.subtitle|truncatewords:8 }}</p>
+                    </div>
+
+                    <div class="col-12 col-lg-6 text-center mb-5">
+                        {% for tag in article.tags.all %}
+                        <a href="/articles/tags/?id={{tag.id}}" class="badge badge-dark">{{tag.title}}</a>
+                        {% endfor %}
+                    </div>
+
+                    <div class="col-12 col-lg-12 mb-5">
+                        <span class="card-text"><span class="far fa-calendar-alt mr-2"></span>{{article.published}}</span>
+                    </div>
+
+                    <div class="scroll-down mb-5">
+                        <a href="#start" class="scroll"><i class="fa fa-angle-down"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="start" class="container my-4 pt-3">
+            <div class="row flex-xl-nowrap">
+
+                <main class="col-lg-8 py-md-3 px-lg-5 bd-content wow fadeInDown" data-wow-duration="1s" role="main">
+                    <h1 class="bd-title" id="content">{{article.title}}</h1>
+                    <p class="bd-lead">{{article.subtitle}}</p>
+
+                    {% if article.disclaimer != "none" %}
+
+                    <div class="alert alert-danger shadow-soft mb-4 mb-lg-5" role="alert">
+                        <span class="alert-inner--icon icon-lg"><span class="fas fa-fire"></span></span>
+                        <span class="alert-heading">Warning!</span>
+                        <p class="pt-3">{{article.disclaimer}}</p>
+                    </div>
+
+                    {% endif %}
+
+                    {{article.text|safe}}
+                </main>
+
+                <div class="col-lg-1"></div>
+
+                <div class="col-lg-3 bd-sidebar wow fadeInDown" data-wow-duration="1s">
+                    <nav class="bd-toc bd-links mb-5 text-muted list-style-none" aria-label="Secondary navigation">
+                        <nav id="TableOfContents">
+                            <ul>
+                                {{article.contents|safe}}
+                            </ul>
+                        </nav>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="d-flex pb-5 pt-6 pt-md-5 border-top border-light bg-primary">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col">
+                        <div class="d-flex text-center justify-content-center align-items-center" role="contentinfo">
+                            <p class="font-weight-normal font-small mb-0">
+                                {{core.footer}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+
+        <!-- Page animation -->
+    <script src="{% static 'assets/js/wow.js' %}"></script>
+    <script>
+        
+        wow = new WOW({
+            animateClass: 'animated',
+            offset: 100,
+        });
+
+        wow.init();
+
+    </script>
+    <script src="{% static 'assets/js/animation.js' %}"></script>
+
+        <!-- Core -->
+    <script src="{% static 'vendor/popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/headroom.js/dist/headroom.min.js' %}"></script>
+
+    <!-- Vendor JS -->
+    <script src="{% static 'vendor/onscreen/dist/on-screen.umd.min.js' %}"></script>
+    <script src="{% static 'vendor/nouislider/distribute/nouislider.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'vendor/waypoints/lib/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'vendor/jarallax/dist/jarallax.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery.counterup/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery-countdown/dist/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
+    <script src="{% static 'vendor/prismjs/prism.js' %}"></script>
+    <script src="{% static 'assets/js/lightbox.js'%}"></script>
+
+    <!-- Neumorphism JS -->
+    <script src="{% static 'assets/js/neumorphism.js' %}"></script>
+
+    <!-- Animation -->
+    <script src="{% static 'assets/js/animation.js' %}"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    </body>
+</html>

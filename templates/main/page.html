@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+    <head>
+        <title>Area 51</title>
+
+        <!-- Primary Meta Tags -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="{{page.subtitle}}">
+        <meta name="keywords" content="hacking, ctf, crackme, keygenme, pwn, reversing, RE, reverse engineering, hack, forensics, osint, coding">
+        <meta name="title" content="{{page.title}}">
+        <meta name="author" content="l1ghth4t">
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/img/favicon/chip.png' %}">
+
+        <!-- Fontawesome -->
+        <link type="text/css" href="{% static 'vendor/@fortawesome/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+
+        <!-- Pixel CSS -->
+        <link type="text/css" href="{% static 'css/neumorphism.css'%}" rel="stylesheet">
+
+        <!-- Some css settings for this page -->
+        <style>
+            #white-text
+            {
+                color: #ffffff;
+            }
+
+            #white-text a
+            {
+                color: #ffffff;
+            }
+
+            #white-text h1
+            {
+                color: #ffffff;
+            }
+            
+            #vanta-back
+            {
+                padding-top: 5.5em;
+                height: 85vh;
+            }
+
+            #vanta-back span
+            {
+                color: #ffffff;
+            }
+
+            .navbar
+            {
+                width: 100%;
+            }
+        </style>
+
+        <link href="{% static 'css/animate.old.css' %}" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="{% static 'assets/js/jquery-2.0.2.min.js'%}"></script>
+        <link type="text/css" href="{% static 'css/preload.css'%}" rel="stylesheet">
+        <script type="text/javascript" src="{% static 'assets/js/preload.js' %}"></script>
+    </head>
+    <body>
+        {% include 'preload/preload.html' %}
+        
+        <!-- Что-то забыл(а) здесь? =) -->
+
+        <!-- Navigation panel -->
+        <nav class="navbar navbar-theme-primary headroom navbar-light navbar-expand-lg headroom--not-top headroom--not-bottom headroom--pinned z-2">
+            <div class="container position-relative">
+
+                <!-- Logo picture -->
+                <a class="navbar-brand mr-lg-5 wow fadeInLeft" data-wow-duration="1s" href="/">
+                    <img class="navbar-brand-dark" src="{% static 'assets/img/favicon/menu.png'%}" alt="pixel logo">
+                    <img class="navbar-brand-light" src="{% static 'assets/img/favicon/menu.png'%}" alt="pixel logo">
+                </a>
+
+                <!-- Block with menu items -->
+                <div class="navbar-collapse collapse wow fadeInLeft" data-wow-duration="1s" id="navbar-default-primary">
+                    <div class="navbar-collapse-header">
+                        <button class="navbar-toggler ml-2" type="button" data-toggle="collapse"
+                        data-target="#navbar-default-primary" aria-controls="navbar-default-primary"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+
+                    <!-- Menu items-->
+                    <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+
+                        <li class="nav-item">
+                            <a href="/articles/" class="nav-link">Каталог публикаций</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+
+                            <a href="#" class="nav-link" data-toggle="dropdown" role="button">
+                                <span class="nav-link-inner-text">Категории</span>
+                                <i class="fas fa-angle-down nav-link-arrow"></i>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                {% for cat in category.all %}
+                                <li><a class="dropdown-item" href="/articles/category/?id={{cat.id}}">{{cat.title}}</a></li>
+                                {% endfor %}
+                            </ul>
+
+                        </li>
+                    </ul>
+
+                </div>
+
+                <!-- The right side -->
+                <div class="d-flex align-items-center">
+
+                    <!-- Social icons -->
+                    <ul class="d-flex list-unstyled mr-4 m-0">
+                        {% for ico in page.icons.all %}
+                        <li class="mr-2">
+                            <a href="{{ ico.link }}" target="_blank" class="btn btn-sm btn-icon-only btn-pill btn-link" data-toggle="tooltip" data-placement="top" data-original-title="{{ ico.tooltip }}">
+                                <span aria-hidden="true" class="{{ ico.icon }}"></span>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    <!-- Button for the menu-->
+                    <button class="navbar-toggler ml-2" type="button" data-toggle="collapse"
+                        data-target="#navbar-default-primary" aria-controls="navbar-default-primary"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- Header section -->
+        <section class="section section bg-soft pb-5 overflow-hidden z-3" id="vanta-back">
+
+            <!-- Icons -->
+            <div class="container white-text">
+                <div class="row">
+                    <div class="col-12 col-lg-11"></div>
+                    <div class="col-12 col-lg-1 text-center">
+                        <ul class="d-flex list-unstyled justify-content-center">
+                            
+                            {% for ico in page.icons.all %}
+                            <li class="mr-2">
+                                <a href="{{ ico.link }}" target="_blank" class="btn btn-sm btn-icon-only btn-pill btn-link wow fadeInRight" data-wow-duration="2s" data-toggle="tooltip" data-placement="top" data-original-title="{{ ico.tooltip }}">
+                                    <span aria-hidden="true" class="{{ ico.icon }}"></span>
+                                </a>
+                            </li>
+                            {% endfor %}
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Header -->
+            <div class="container">
+                <div class="row justify-content-center text-center pt-7">
+                    <div class="col-lg-8 col-12">
+                        <div id="white-text" class="wow fadeInDown" data-wow-duration="2s">
+                            <h1 class="display-2 font-weight-light mb-3">{{page.title}}</h1>
+                            <p class="lead font-weight-light px-md-6 mb-8">{{page.subtitle}}</p>
+                        </div>
+
+                        <div id="white-text" class="scroll-down wow fadeInUp mb-3" data-wow-delay="0.5s">
+                            <a href="#start" class="scroll"><i class="fa fa-angle-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Section with icon boxes -->
+        <section id="start" class="section section-lg">
+            <div class="container">
+
+                <!-- Header -->
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 mb-5 text-center">
+                        <h1 class="font-weight-light pt-5 wow fadeInUp" data-wow-duration="2s">Добро пожаловать!</h1>
+                        <p class="lead wow fadeInUp" data-wow-duration="2s">Этот блог посвящен информационной безопасности. Тематика публикаций на сайте представлена ниже.</p>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    
+                    {% for cat in category.all %}
+                    <!-- One icon box -->
+                    <div class="col-12 col-md-4 mb-5 wow fadeInUp" data-wow-duration="2s">
+                        <div class="icon-box text-center mb-md-0">
+                            <div class="icon icon-shape icon-lg bg-soft shadow-soft border border-light rounded-circle mb-3">
+                                <img src="{{cat.icon.url}}" width="48px" height="48px"/>
+                            </div>
+                            <h2 class="h5 my-3">{{cat.title}}</h2>
+                            <p class="px-lg-4">{{cat.description}}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section with last articles -->
+        <section class="section">
+            <div class="container">
+                <div class="row justify-content-center mb-5 element-animation">
+                    <div class="col-lg-8 text-center wow fadeInDown" data-wow-duration="2s">
+                        <h1 class="font-weight-light">Последние статьи</h1>
+                        <p class="lead">Несколько последних статей, которые были опубликованы на этом сайте.</p>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+
+                    {% for art in arts.all %}
+
+                    <!-- Article card -->
+                    <div class="col-12 col-md-6 mb-5 col-lg-4 wow slideInLeft" data-wow-duration="1s">
+                        <div class="card bg-primary shadow-soft text-center border-light">
+                            <div class="card-header">
+                                <span class="card-text small"><span class="far fa-calendar-alt mr-2"></span>{{art.published}}</span>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="h5 card-title">{{art.title}}</h3>
+                                <p class="card-text">{{art.subtitle}}</p>
+                                <a href="/articles/{{art.id}}" class="btn btn-primary btn-sm">Открыть статью</a>
+                            </div>
+
+                            <div class="card-footer">
+                                {% for tag in art.tags.all %}
+                                <a href="/articles/tags/?id={{tag.id}}" class="badge badge-dark">{{tag.title}}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+                    <div class="col-12 text-center justify-content-center element-animation wow fadeInUp" data-wow-duration="2s">
+                        <a href="/articles/" class="btn btn-primary"><i class="fas fa-book mr-2"></i> Больше публикаций</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section with blockquote -->
+        <section class="section">
+            <div class="container">
+                <div class="row justify-content-center element-animation pt-5 mb-5 wow fadeInDown" data-wow-duration="2s">
+                    <blockquote class="col-lg-8 blockquote text-center">
+                        {{page.quote}}
+                        <footer class="blockquote-footer mt-3 text-dark">{{page.author}}</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section about -->
+        <section class="section">
+            <div class="container">
+                <!-- Header -->
+                <div class="row justify-content-center element-animation">
+                    <div class="col-lg-8 mb-6 text-center">
+                        <h1 class="font-weight-light wow fadeInDown" data-wow-duration="2s">Обо мне</h1>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center element-animation">
+
+                    <!-- Picture -->
+                    <div class="col-12 col-lg-6 col-xl-3 mb-5 justify-content-center wow fadeInLeft" data-wow-duration="2s">
+                        <div class="card bg-primary shadow-inset border-light organic-radius p-3">
+                            <img class="organic-radius img-fluid" src="{{page.avatar.url}}"/>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 pt-5 col-xl-1"></div>
+
+                    <!-- Data with icons -->
+                    <div class="col-12 col-lg-6 pt-5 col-xl-4 wow fadeInRight" data-wow-duration="2s">
+                        {% for personstr in page.about.all %}
+                        <p><i class="{{personstr.icon}} mr-2"></i> {{personstr.text}}</p>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="d-flex pb-5 pt-6 pt-md-5 border-top border-light bg-primary">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col">
+                        <div class="d-flex text-center justify-content-center align-items-center" role="contentinfo">
+                            <p class="font-weight-normal font-small mb-0">
+                                {{page.footer}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+
+    <!-- Page animation -->
+    <script src="{% static 'assets/js/wow.js' %}"></script>
+    <script>
+        
+        wow = new WOW({
+            animateClass: 'animated',
+            offset: 100,
+        });
+
+        wow.init();
+
+    </script>
+    <script src="{% static 'assets/js/animation.js' %}"></script>
+
+    <!-- Vanta -->
+    <script src="{% static 'assets/js/p5.min.js' %}"></script>
+    <script src="{% static 'assets/js/vanta.topology.min.js' %}"></script>
+    <script>
+        VANTA.TOPOLOGY({
+            el: "#vanta-back",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x8d4e96
+        })
+    </script>
+
+    <!-- Core -->
+    <script src="{% static 'vendor/popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/headroom.js/dist/headroom.min.js' %}"></script>
+
+    <!-- Vendor JS -->
+    <script src="{% static 'vendor/onscreen/dist/on-screen.umd.min.js' %}"></script>
+    <script src="{% static 'vendor/nouislider/distribute/nouislider.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'vendor/waypoints/lib/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'vendor/jarallax/dist/jarallax.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery.counterup/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery-countdown/dist/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
+    <script src="{% static 'vendor/prismjs/prism.js' %}"></script>
+
+    <!-- Neumorphism JS -->
+    <script src="{% static 'assets/js/neumorphism.js' %}"></script>
+
+    </body>
+</html>

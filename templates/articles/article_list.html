@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+    <head>
+        <title>{{page.title}}</title>
+
+        <!-- Primary Meta Tags -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="{{page.subtitle}}">
+        <meta name="keywords" content="hacking, ctf, crackme, keygenme, pwn, reversing, RE, reverse engineering, hack, forensics, osint, coding">
+        <meta name="title" content="{{page.title}}">
+        <meta name="author" content="l1ghth4t">
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/img/favicon/chip.png' %}">
+
+        <!-- Fontawesome -->
+        <link type="text/css" href="{% static 'vendor/@fortawesome/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+
+        <!-- Pixel CSS -->
+        <link type="text/css" href="{% static 'css/neumorphism.css'%}" rel="stylesheet">
+
+        <!-- Animation -->
+        <link type="text/css" href="{% static 'css/animation.css'%}" rel="stylesheet">
+
+        <!-- Etc -->
+        <link type="text/css" href="{% static 'css/docs.css'%}" rel="stylesheet">
+        <link href="{% static 'css/animate.old.css'%}" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="{% static 'assets/js/jquery-2.0.2.min.js'%}"></script>
+        <link type="text/css" href="{% static 'css/preload.css'%}" rel="stylesheet">
+        <script type="text/javascript" src="{% static 'assets/js/preload.js' %}"></script>
+
+        <style>
+            .navbar
+            {
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        {% include 'preload/preload.html' %}
+
+        <!-- Что-то забыл(а) здесь? =) -->
+
+        <!-- Navigation panel -->
+        <nav class="navbar navbar-transparent navbar-expand-lg navbar-light navbar-theme-primary headroom z-3">
+            <div class="container justify-content-center">
+
+                <!-- Logo picture -->
+                <a class="navbar-brand mr-5 mr-lg-5 wow fadeInLeft" data-wow-duration="1s" href="/">
+                    <img class="navbar-brand-dark" src="{% static 'assets/img/favicon/menu.png'%}" alt="pixel logo">
+                    <img class="navbar-brand-light" src="{% static 'assets/img/favicon/menu.png'%}" alt="pixel logo">
+                </a>
+
+                <div class="navbar-collapse collapse wow fadeInLeft" data-wow-duration="1s" id="navbar-default-primary">
+                    <div class="navbar-collapse-header">
+                        <button class="navbar-toggler ml-2" type="button" data-toggle="collapse"
+                        data-target="#navbar-default-primary" aria-controls="navbar-default-primary"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                    <!-- Menu items-->
+                    <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+
+                        <li class="nav-item">
+                            <a href="/articles/" class="nav-link">Каталог публикаций</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+
+                            <a href="#" class="nav-link" data-toggle="dropdown" role="button">
+                                <span class="nav-link-inner-text">Категории</span>
+                                <i class="fas fa-angle-down nav-link-arrow"></i>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                {% for cat in category.all %}
+                                <li><a class="dropdown-item" href="/articles/category/?id={{cat.id}}">{{cat.title}}</a></li>
+                                {% endfor %}
+                            </ul>
+
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- The right side -->
+                <div class="d-flex align-items-center wow fadeInRight" data-wow-delay="1s" data-wow-duration="2s">
+
+                    <!-- Social icons -->
+                    <ul class="d-flex list-unstyled mr-4 m-0">
+                        {% for ico in core.icons.all %}
+                        <li class="mr-2">
+                            <a href="{{ ico.link }}" target="_blank" class="btn btn-sm btn-icon-only btn-pill btn-link" data-toggle="tooltip" data-placement="top" data-original-title="{{ ico.tooltip }}">
+                                <span aria-hidden="true" class="{{ ico.icon }}"></span>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    <!-- Button for the menu-->
+                    <button class="navbar-toggler ml-2" type="button" data-toggle="collapse"
+                        data-target="#navbar-default-primary" aria-controls="navbar-default-primary"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                </div>
+            </div>
+        </nav>
+
+        <!-- Header of page -->
+        <section class="section-lg bg-soft pb-1 overflow-hidden border-light border-bottom">
+            <div class="container">
+                <div class="row text-center justify-content-center">
+                    <div class="col-12 col-lg-8 text-center mb-5 wow fadeInUp" data-wow-delay="1s" data-wow-duration="3s">
+                        <h1 class="display-2 pt-5 font-weight-light">{{page.title}}</h1>
+                        
+                        <p class="lead font-weight-light mb-3">{{page.subtitle}}</p>
+                    </div>
+
+                    <div class="col-12 col-lg-6 bg-primary alert shadow-inset fade show mb-6 wow fadeInDown" data-wow-delay="1s" data-wow-duration="3s" role="alert">
+                        <span class="alert-inner--text z-2">
+                            <span class="alert-inner--icon text-danger"><span class="fas fa-exclamation-circle"></span></span>
+                            <strong class="text-danger">Warning!</strong> {{page.disclaimer}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-12 col-lg-1"></div>
+
+                    <div class="col-12 col-lg-6 mb-5">
+                        <div class="mb-5">
+                            <h3 class="wow fadeInDown" data-wow-duration="2s">Публикации</h3>
+                        </div>
+
+                        {% if article_list.count == 0 %}
+                        <div class="alert alert-secondary shadow-inset text-center" role="alert">
+                            <span class="alert-inner--text">
+                                <b class="alert-link">Ooops...</b> По вашему запросу ничего не нашлось =(
+                            </span>
+                        </div>
+                        {% endif %}
+
+                        {% for post in article_list %}
+                        <!-- Card with article -->
+                        <div class="card bg-primary shadow-inset border-light mb-3 z-2 wow fadeInLeft" data-wow-duration="3s">
+                            <div class="card-body p-5">
+                                <h3 class="h4 card-title mb-3">{{post.title}}</h3>
+                                <span class="card-text small"><span class="far fa-calendar-alt mr-2"></span>{{post.published}}</span>
+
+                                <div class="pt-3">
+                                    {% for tag in post.tags.all %}
+                                    <a href="/articles/tags/?id={{tag.id}}" class="badge badge-dark">{{tag.title}}</a>
+                                    {% endfor %}
+                                </div>
+
+                                <p class="card-text mt-4">{{post.subtitle}}</p>
+
+                                <div class="d-flex align-items-center">
+                                    <a href="/articles/{{post.id}}" class="btn btn-primary btn-sm">Открыть статью</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+                    <div class="col-12 col-lg-2"></div>
+
+                    <form action="{% url 'tags' %}" method="get" class="col-12 col-lg-3 mb-5 z-3">
+                        <div class="mb-5">
+                            <h3 class="wow fadeInDown" data-wow-duration="2s">Фильтр</h3>
+                        </div>
+
+                        <div class="row">
+
+                            {% for cat in category.all %}
+                            <div class="col-6 col-lg-12 mb-5 wow fadeIn" data-wow-duration="2s">
+
+                                <div class="mb-2">
+                                    <span class="h6 font-weight-bold">{{cat.title}}</span>
+                                </div>
+
+                                {% for tag in cat.tag_set.all %}
+                                <div class="form-check square-check">
+                                    <input class="form-check-input" type="checkbox" name="id" value="{{tag.id}}" id="{{cat.title|cut:' '}}_{{tag.title|cut:' '}}">
+                                    <label class="form-check-label" for="{{cat.title|cut:' '}}_{{tag.title|cut:' '}}">
+                                        {{tag.title}}
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+
+                            
+                        </div>
+
+                        <button type="submit" class="btn btn-sm btn-primary mb-4 wow fadeIn" data-wow-duration="2s" data-toggle="modal" data-target="#modal-default">Отобразить</button>
+
+                    </form>
+
+                    <div class="col-12 col-lg-12">
+
+                        {% include 'articles/pagination.html' %}
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="d-flex pb-5 pt-6 pt-md-5 border-top border-light bg-primary">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col">
+                        <div class="d-flex text-center justify-content-center align-items-center" role="contentinfo">
+                            <p class="font-weight-normal font-small mb-0">
+                                {{core.footer}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+
+        <!-- Page animation -->
+    <script src="{% static 'assets/js/wow.js' %}"></script>
+    <script>
+        
+        wow = new WOW({
+            animateClass: 'animated',
+            offset: 100,
+        });
+
+        wow.init();
+
+    </script>
+    <script src="{% static 'assets/js/animation.js' %}"></script>
+
+         <!-- Core -->
+    <script src="{% static 'vendor/popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/headroom.js/dist/headroom.min.js' %}"></script>
+
+    <!-- Vendor JS -->
+    <script src="{% static 'vendor/onscreen/dist/on-screen.umd.min.js' %}"></script>
+    <script src="{% static 'vendor/nouislider/distribute/nouislider.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'vendor/waypoints/lib/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'vendor/jarallax/dist/jarallax.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery.counterup/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery-countdown/dist/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
+    <script src="{% static 'vendor/prismjs/prism.js' %}"></script>
+
+    <!-- Neumorphism JS -->
+    <script src="{% static 'assets/js/neumorphism.js' %}"></script>
+
+    <!-- Animation -->
+    <script src="{% static 'assets/js/animation.js' %}"></script>
+        
+
+    </body>
+</html>
