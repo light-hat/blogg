@@ -45,7 +45,7 @@
 
         <!-- Navigation panel -->
         <nav class="navbar navbar-transparent navbar-expand-lg navbar-light navbar-theme-primary headroom z-3">
-            <div class="container justify-content-center">
+            <div class="container position-relative">
 
                 <!-- Logo picture -->
                 <a class="navbar-brand mr-5 mr-lg-5 wow fadeInLeft" data-wow-duration="1s" href="/">
@@ -86,7 +86,7 @@
                 </div>
 
                 <!-- The right side -->
-                <div class="d-flex align-items-center wow fadeInRight" data-wow-delay="1s" data-wow-duration="2s">
+                <div class="d-flex align-items-center wow fadeInRight" data-wow-delay="0.5s" data-wow-duration="2s">
 
                     <!-- Social icons -->
                     <ul class="d-flex list-unstyled mr-4 m-0">
@@ -113,14 +113,14 @@
         <!-- Header of page -->
         <section class="section-lg bg-soft pb-1 overflow-hidden border-light border-bottom">
             <div class="container">
-                <div class="row text-center justify-content-center">
-                    <div class="col-12 col-lg-8 text-center mb-5 wow fadeInUp" data-wow-delay="1s" data-wow-duration="3s">
+                <div class="row text-center justify-content-center wow fadeInDown" data-wow-delay="0.5s" data-wow-duration="3s">
+                    <div class="col-12 col-lg-8 text-center mb-5">
                         <h1 class="display-2 pt-5 font-weight-light">{{page.title}}</h1>
                         
                         <p class="lead font-weight-light mb-3">{{page.subtitle}}</p>
                     </div>
 
-                    <div class="col-12 col-lg-6 bg-primary alert shadow-inset fade show mb-6 wow fadeInDown" data-wow-delay="1s" data-wow-duration="3s" role="alert">
+                    <div class="col-12 col-lg-6 bg-primary alert shadow-inset fade show mb-6" role="alert">
                         <span class="alert-inner--text z-2">
                             <span class="alert-inner--icon text-danger"><span class="fas fa-exclamation-circle"></span></span>
                             <strong class="text-danger">Warning!</strong> {{page.disclaimer}}
@@ -138,11 +138,11 @@
 
                     <div class="col-12 col-lg-6 mb-5">
                         <div class="mb-5">
-                            <h3 class="wow fadeInDown" data-wow-duration="2s">Публикации</h3>
+                            <h3 class="wow fadeIn" data-wow-duration="2s">Публикации</h3>
                         </div>
 
                         {% if article_list.count == 0 %}
-                        <div class="alert alert-secondary shadow-inset text-center" role="alert">
+                        <div class="alert alert-secondary shadow-inset text-center wow fadeInUp" role="alert">
                             <span class="alert-inner--text">
                                 <b class="alert-link">Ooops...</b> По вашему запросу ничего не нашлось =(
                             </span>
@@ -151,7 +151,7 @@
 
                         {% for post in article_list %}
                         <!-- Card with article -->
-                        <div class="card bg-primary shadow-inset border-light mb-3 z-2 wow fadeInLeft" data-wow-duration="3s">
+                        <div class="card bg-primary shadow-inset border-light mb-3 z-2 wow fadeInUp" data-wow-duration="3s">
                             <div class="card-body p-5">
                                 <h3 class="h4 card-title mb-3">{{post.title}}</h3>
                                 <span class="card-text small"><span class="far fa-calendar-alt mr-2"></span>{{post.published}}</span>
@@ -177,13 +177,13 @@
 
                     <form action="{% url 'tags' %}" method="get" class="col-12 col-lg-3 mb-5 z-3">
                         <div class="mb-5">
-                            <h3 class="wow fadeInDown" data-wow-duration="2s">Фильтр</h3>
+                            <h3 class="wow fadeIn" data-wow-duration="2s">Фильтр</h3>
                         </div>
 
                         <div class="row">
 
                             {% for cat in category.all %}
-                            <div class="col-6 col-lg-12 mb-5 wow fadeIn" data-wow-duration="2s">
+                            <div class="col-6 col-lg-12 mb-5 wow fadeInUp" data-wow-duration="2s">
 
                                 <div class="mb-2">
                                     <span class="h6 font-weight-bold">{{cat.title}}</span>
@@ -203,7 +203,7 @@
                             
                         </div>
 
-                        <button type="submit" class="btn btn-sm btn-primary mb-4 wow fadeIn" data-wow-duration="2s" data-toggle="modal" data-target="#modal-default">Отобразить</button>
+                        <button type="submit" class="btn btn-sm btn-primary mb-4 wow fadeInUp" data-wow-duration="2s" data-toggle="modal" data-target="#modal-default">Отобразить</button>
 
                     </form>
 

@@ -212,7 +212,7 @@
         <section class="section">
             <div class="container">
                 <div class="row justify-content-center mb-5 element-animation">
-                    <div class="col-lg-8 text-center wow fadeInDown" data-wow-duration="2s">
+                    <div class="col-lg-8 text-center wow fadeInUp" data-wow-duration="2s">
                         <h1 class="font-weight-light">Последние статьи</h1>
                         <p class="lead">Несколько последних статей, которые были опубликованы на этом сайте.</p>
                     </div>
@@ -223,7 +223,7 @@
                     {% for art in arts.all %}
 
                     <!-- Article card -->
-                    <div class="col-12 col-md-6 mb-5 col-lg-4 wow slideInLeft" data-wow-duration="1s">
+                    <div class="col-12 col-md-6 mb-5 col-lg-4 wow fadeInUp" data-wow-duration="1s">
                         <div class="card bg-primary shadow-soft text-center border-light">
                             <div class="card-header">
                                 <span class="card-text small"><span class="far fa-calendar-alt mr-2"></span>{{art.published}}</span>
@@ -278,7 +278,7 @@
                 <div class="row justify-content-center element-animation">
 
                     <!-- Picture -->
-                    <div class="col-12 col-lg-6 col-xl-3 mb-5 justify-content-center wow fadeInLeft" data-wow-duration="2s">
+                    <div class="col-12 col-lg-6 col-xl-3 mb-5 justify-content-center wow fadeInDown" data-wow-duration="2s">
                         <div class="card bg-primary shadow-inset border-light organic-radius p-3">
                             <img class="organic-radius img-fluid" src="{{page.avatar.url}}"/>
                         </div>
@@ -287,7 +287,7 @@
                     <div class="col-12 col-lg-6 pt-5 col-xl-1"></div>
 
                     <!-- Data with icons -->
-                    <div class="col-12 col-lg-6 pt-5 col-xl-4 wow fadeInRight" data-wow-duration="2s">
+                    <div class="col-12 col-lg-6 pt-5 col-xl-4 wow fadeInDown" data-wow-duration="2s">
                         {% for personstr in page.about.all %}
                         <p><i class="{{personstr.icon}} mr-2"></i> {{personstr.text}}</p>
                         {% endfor %}

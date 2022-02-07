@@ -45,15 +45,14 @@
 Устанавливаем необходимые пакеты в apt.
 
 ```
-$ sudo apt-get update
-$ sudo apt-get upgrade
-$ ...
+sudo apt-get update
+...
 ```
 
 Устанавливаем пакеты в pip.
 
 ```
-$ pip install ...
+pip install ...
 ```
 
 ДОПИСАТЬ
@@ -139,8 +138,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 Выполним миграцию БД следующим образом:
 
 ```
-$ python3 manage.py makemigrations
-$ python3 manage.py migrate
+python3 manage.py makemigrations
+```
+
+```
+python3 manage.py migrate
 ```
 
 Допишу потом...
@@ -153,18 +155,18 @@ $ python3 manage.py migrate
 
 ## Что использовано при разработке
 
-- для frontend использовался фреймворк Neumorphism;
+- для frontend использовался фреймворк `Neumorphism`;
 
-- прикольная хрень на главной странице: vanta.js;
+- прикольная хрень на главной странице: `vanta.js`;
 
-- анимация: animate.css + wow.js;
+- анимация: `animate.css` + `wow.js`;
 
-- не обошлось дело без jquery.js;
+- не обошлось дело без `jquery.js`;
 
-- highlight для картинок: lightbox;
+- highlight для картинок: `lightbox`;
 
-- иконки взял отсюда: flaticon.com;
+- иконки взял отсюда: `flaticon.com`;
 
-- для backend использовался python-фреймворк Django;
+- для backend использовался python-фреймворк `Django`;
 
-- В качестве WYSIWYG-редактора в админку django был интегрирован CKEditor.
+- В качестве WYSIWYG-редактора в админку django был интегрирован `CKEditor`.
