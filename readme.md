@@ -30,40 +30,56 @@
 
 ## Деплой проекта
 
-Что использовал я:
-
-- Debian 10
-
-- Python <VERSION>
-
-- Pip <VERSION>
-
-- Nginx <VERSION>
-
-### Установка зависимостей
-
 Устанавливаем необходимые пакеты в apt.
 
 ```
 sudo apt-get update
-...
 ```
 
-Устанавливаем пакеты в pip.
-
 ```
-pip install ...
+sudo apt-get install nginx git supervisor
 ```
 
-ДОПИСАТЬ
+Для дальнейшей работы лучше создать пользователя в группе sudo.
 
-### Настройки проекта
+### Установка базы данных
+
+Устанавливаем Postgresql через apt-get
+
+```
+sudo apt-get install postgresql
+```
+
+Дальше входим в консоль postgres и выполняем следующие команды:
+
+```
+sudo -u postgres psql
+CREATE DATABASE area51;
+CREATE USER db_user_name WITH PASSWORD '12345';
+ALTER ROLE db_user_name SET client_encoding TO 'utf-8';
+ALTER ROLE db_user_name SET default_transaction_isolation TO 'read commited';
+ALTER ROLE db_user_name SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE area51 TO db_user_name;
+\q
+```
+
+`db_user_name` - имя пользователя в базе данных;
+`12345` - его пароль, который лучше выбрать посильнее, чем этот;
+`area51` - имя базы данных.
+
+### Виртуальное окружение Python
 
 Будем считать, что уже склонирован репозиторий, создано виртуальное окружение командой `python3 -m venv venv` и активировано командой `source venv/bin/activate`.
 
-Первым делом стоит подключить настройки в `settings.py`. Тут два варианта развития событий.
+Сначала нужно установить python-пакеты. Примерно так:
 
-#### Локальные настройки
+```
+pip3 install -r requirements.txt
+```
+
+Далее нам стоит подключить настройки в `settings.py`. Тут два варианта развития событий.
+
+### Локальные настройки
 
 Эти настройки используем, если работаем над проектом на своей машине. На прод это лучше не грузить.
 
@@ -96,7 +112,7 @@ STATICFILES_DIRS = [STATIC_DIR]
 
 `SECRET_KEY` пренебрегать не советую. Хоть и работаем на localhost, правила безопасности никто не отменял.
 
-#### Настройки для деплоя
+### Настройки для деплоя
 
 А эти настройки уже грузим на прод. Файл будет называться `prod_settings.py` и иметь такое содержание:
 
