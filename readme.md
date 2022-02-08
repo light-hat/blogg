@@ -37,10 +37,8 @@ sudo apt-get update
 ```
 
 ```
-sudo apt-get install nginx git supervisor
+sudo apt-get install nginx git supervisor gunicorn
 ```
-
-Для дальнейшей работы лучше создать пользователя в группе sudo.
 
 ### Установка базы данных
 
@@ -50,6 +48,12 @@ sudo apt-get install nginx git supervisor
 sudo apt-get install postgresql
 ```
 
+Также нам надо установить драйвер для postgres вот этой командой:
+
+```
+pip3 install psycopg2-binary
+```
+
 Дальше входим в консоль postgres и выполняем следующие команды:
 
 ```
@@ -57,7 +61,7 @@ sudo -u postgres psql
 CREATE DATABASE area51;
 CREATE USER db_user_name WITH PASSWORD '12345';
 ALTER ROLE db_user_name SET client_encoding TO 'utf-8';
-ALTER ROLE db_user_name SET default_transaction_isolation TO 'read commited';
+ALTER ROLE db_user_name SET default_transaction_isolation TO 'read committed';
 ALTER ROLE db_user_name SET timezone TO 'UTC';
 GRANT ALL PRIVILEGES ON DATABASE area51 TO db_user_name;
 \q
@@ -66,6 +70,12 @@ GRANT ALL PRIVILEGES ON DATABASE area51 TO db_user_name;
 `db_user_name` - имя пользователя в базе данных;
 `12345` - его пароль, который лучше выбрать посильнее, чем этот;
 `area51` - имя базы данных.
+
+Запускаем postgres:
+
+```
+sudo service postgresql start
+```
 
 ### Виртуальное окружение Python
 
@@ -138,18 +148,18 @@ DATABASES = {
         'USER': 'user_name',
         'PASSWORD': 'pass',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '5434',
     }
 }
 
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [STATIC_DIR]
+#STATIC_DIR = os.path.join(BASE_DIR, 'static')
+#STATICFILES_DIRS = [STATIC_DIR]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 ```
 
 Данные, разумеется, указываем свои. Генерируем `SECRET_KEY` (чем длиннее, тем лучше). Там где `ALLOWED_HOSTS` выставляем либо имя своего домена, либо IP-шник. В `DATABASES` указываем учётные данные для своей базы. СУБД используется PostgreSQL.
 
-### Миграции БД
+### Миграция БД
 
 Выполним миграцию БД следующим образом:
 
@@ -161,13 +171,84 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 ```
 
-Допишу потом...
+### Запуск сервера gunicorn
+
+Запускаем из папки с проектом через эту команду:
+
+```
+gunicorn --bind 127.0.0.1:8000 area5
+1.wsgi
+```
+
+Только ip-шник свой указываем.
+
+Единорог может брыкаться. Проблему решил, установив django в глобальное окружение. Странно, но сработало.
+
+### Настройка nginx
+
+Конфиг находится здесь: `/etc/nginx/sites-available/default`. Содержимое:
+
+```
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        server_name 192.168.43.23; # меняем потом на домен
+
+        location /static/ {
+                root /home/sickmyduck/blogg;
+                expires 30d;
+        }
+
+        location /media/ {
+                root /home/sickmyduck/blogg;
+                expires 30d;
+        }
+
+        location / {
+                proxy_pass http://127.0.0.1:8000;
+                proxy_set_header Host $server_name;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                }
+}
+```
+
+Перезапускаем nginx:
+
+```
+sudo systemctl restart nginx
+```
+
+### Supervisor
+
+```
+cd /etc/supervisor/conf.d/
+sudo ln /home/l1ghth4t/blogg/config/area51.conf
+
+sudo update-rc.d supervisor enable
+sudo service supervisor start
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl status project
+sudo supervisorctl restart project
+```
 
 ## Действия после деплоя
 
 После выполненных действий мы получим пустой сайт. Нужно его заполнить данными в админке. Вот краткое пояснение, что там вообще к чему.
 
-Допишу потом...
+### Создаём суперпользователя в админке
+
+```
+python3 manage.py createsuperuser
+```
+
+Вводим данные, которые у нас запрашивают.
+
+### Добавление статей
+
+Как добавлять статьи на сайт рассказано [здесь](admin_crutches.md).
 
 ## Что использовано при разработке
 
