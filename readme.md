@@ -234,6 +234,60 @@ sudo supervisorctl status project
 sudo supervisorctl restart project
 ```
 
+### Подключаем SSL-сертификат
+
+Выключаем сервер:
+
+```
+sudo systemctl stop nginx
+```
+
+Нам надо два файла в директории `/etc/ssl`: `domain.crt` и `domain.key`. Закидываем их туда и прописываем новый конфиг для nginx:
+
+```
+server {
+        listen 80;
+        server_name area51-lab.ru;
+
+        return 301 https://www.area51-lab.ru$request_uri;
+}
+
+server {
+        listen 443 ssl default_server;
+        listen [::]:443 ssl default_server;
+
+        # include snippets/snakeoil.conf; # Заглушка
+
+        ssl_certificate /etc/ssl/area51.crt;
+        ssl_certificate_key /etc/ssl/area51.key;
+
+        server_name area51-lab.ru www.area51-lab.ru;
+
+        location /static/ {
+                root /home/l1ghth4t/blogg;
+                expires 30d;
+        }
+
+        location /media/ {
+                root /home/l1ghth4t/blogg;
+                expires 30d;
+        }
+
+        location / {
+                proxy_pass http://127.0.0.1:8000;
+                proxy_set_header Host $server_name;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+}
+```
+
+И заново запускаем сервер:
+
+```
+sudo systemctl start nginx
+```
+
 ## Действия после деплоя
 
 После выполненных действий мы получим пустой сайт. Нужно его заполнить данными в админке. Вот краткое пояснение, что там вообще к чему.
@@ -245,6 +299,10 @@ python3 manage.py createsuperuser
 ```
 
 Вводим данные, которые у нас запрашивают.
+
+### Убираем 500 ошибку
+
+Такой ещё момент. Развернутный сайт отображает 500 ошибку. В админке необходимо добавить настройки для главной страницы и для новостной, тогда сайт заработает в нормальном режиме. Можно было конечно как-то по умолчанию задавать наверное, но что сделано, то сделано.
 
 ### Добавление статей
 
