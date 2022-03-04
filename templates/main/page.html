@@ -148,7 +148,7 @@
                             
                             {% for ico in page.icons.all %}
                             <li class="mr-2">
-                                <a href="{{ ico.link }}" target="_blank" class="btn btn-sm btn-icon-only btn-pill btn-link wow fadeInRight" data-wow-duration="2s" data-toggle="tooltip" data-placement="top" data-original-title="{{ ico.tooltip }}">
+                                <a href="{{ ico.link }}" target="_blank" class="btn btn-sm btn-icon-only btn-pill btn-link wow fadeInDown" data-wow-duration="2s" data-toggle="tooltip" data-placement="top" data-original-title="{{ ico.tooltip }}">
                                     <span aria-hidden="true" class="{{ ico.icon }}"></span>
                                 </a>
                             </li>
@@ -184,16 +184,16 @@
                 <!-- Header -->
                 <div class="row justify-content-center">
                     <div class="col-lg-8 mb-5 text-center">
-                        <h1 class="font-weight-light pt-5 wow fadeInUp" data-wow-duration="1s">Добро пожаловать!</h1>
-                        <p class="lead wow fadeInUp" data-wow-duration="1s">Этот блог посвящен информационной безопасности. Тематика публикаций на сайте представлена ниже.</p>
+                        <h1 class="font-weight-light pt-5 wow fadeInUp" data-duration="1s">Добро пожаловать!</h1>
+                        <p class="lead wow fadeInUp" data-duration="1s">Этот блог посвящен информационной безопасности. Тематика публикаций на сайте представлена ниже.</p>
                     </div>
                 </div>
 
-                <div class="row justify-content-center">
+                <div class="row justify-content-center wow fadeInUp" data-duration="2s">
                     
                     {% for cat in category.all %}
                     <!-- One icon box -->
-                    <div class="col-12 col-md-4 mb-5 wow fadeInUp" data-wow-duration="1s">
+                    <div class="col-12 col-md-4 mb-5">
                         <div class="icon-box text-center mb-md-0">
                             <div class="icon icon-shape icon-lg bg-soft shadow-soft border border-light rounded-circle mb-3">
                                 <img src="{{cat.icon.url}}" width="48px" height="48px"/>
@@ -212,18 +212,18 @@
         <section class="section">
             <div class="container">
                 <div class="row justify-content-center mb-5 element-animation">
-                    <div class="col-lg-8 text-center wow fadeInUp" data-wow-duration="1s">
+                    <div class="col-lg-8 text-center wow fadeInUp" data-duration="1s">
                         <h1 class="font-weight-light">Последние статьи</h1>
                         <p class="lead">Несколько последних статей, которые были опубликованы на этом сайте.</p>
                     </div>
                 </div>
 
-                <div class="row justify-content-center">
+                <div class="row justify-content-center wow fadeInUp" data-duration="1s">
 
                     {% for art in arts.all %}
 
                     <!-- Article card -->
-                    <div class="col-12 col-md-6 mb-5 col-lg-4 wow fadeInUp" data-wow-duration="1s">
+                    <div class="col-12 col-md-6 mb-5 col-lg-4">
                         <div class="card bg-primary shadow-soft text-center border-light">
                             <div class="card-header">
                                 <span class="card-text small"><span class="far fa-calendar-alt mr-2"></span>{{art.published}}</span>
@@ -245,7 +245,7 @@
 
                     {% endfor %}
 
-                    <div class="col-12 text-center justify-content-center element-animation wow fadeInUp" data-wow-duration="1s">
+                    <div class="col-12 text-center justify-content-center element-animation">
                         <a href="/articles/" class="btn btn-primary"><i class="fas fa-book mr-2"></i> Больше публикаций</a>
                     </div>
 
@@ -256,7 +256,7 @@
         <!-- Section with blockquote -->
         <section class="section">
             <div class="container">
-                <div class="row justify-content-center element-animation pt-5 mb-5 wow fadeInUp" data-wow-duration="1s">
+                <div class="row justify-content-center element-animation pt-5 mb-5 wow fadeInUp" data-wow-duration="2s">
                     <blockquote class="col-lg-8 blockquote text-center">
                         {{page.quote}}
                         <footer class="blockquote-footer mt-3 text-dark">{{page.author}}</footer>
@@ -271,14 +271,14 @@
                 <!-- Header -->
                 <div class="row justify-content-center element-animation">
                     <div class="col-lg-8 mb-6 text-center">
-                        <h1 class="font-weight-light wow fadeInUp" data-wow-duration="1s">Обо мне</h1>
+                        <h1 class="font-weight-light">Обо мне</h1>
                     </div>
                 </div>
 
-                <div class="row justify-content-center element-animation">
+                <div class="row justify-content-center element-animation wow fadeInDown" data-duration="2s">
 
                     <!-- Picture -->
-                    <div class="col-12 col-lg-6 col-xl-3 mb-5 justify-content-center wow fadeIn" data-wow-duration="1s">
+                    <div class="col-12 col-lg-6 col-xl-3 mb-5 justify-content-center">
                         <div class="card bg-primary shadow-inset border-light organic-radius p-3">
                             <img class="organic-radius img-fluid" src="{{page.avatar.url}}"/>
                         </div>
@@ -287,7 +287,7 @@
                     <div class="col-12 col-lg-6 pt-5 col-xl-1"></div>
 
                     <!-- Data with icons -->
-                    <div class="col-12 col-lg-6 pt-5 col-xl-4 wow fadeIn" data-wow-duration="1s">
+                    <div class="col-12 col-lg-6 pt-5 col-xl-4">
                         {% for personstr in page.about.all %}
                         <p><i class="{{personstr.icon}} mr-2"></i> {{personstr.text}}</p>
                         {% endfor %}

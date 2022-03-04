@@ -36,6 +36,26 @@
             {
                 width: 100%;
             }
+
+	    .background
+	    {
+		color: #fff;
+		background: linear-gradient(rgba(0, 0, 0, 0.6) 100%, rgba(255, 255, 255, 0)),
+                    url("/media/main_article.jpg"), #000;
+                background-position: center center;
+                background-repeat: no-repeat;
+                overflow: hidden;
+	    }
+
+	    .background p
+            {
+                color: #fff;
+            }
+
+            .background h1
+            {
+                color: #fff;
+            }
         </style>
     </head>
     <body>
@@ -111,21 +131,21 @@
         </nav>
 
         <!-- Header of page -->
-        <section class="section-lg bg-soft pb-1 overflow-hidden border-light border-bottom">
+        <section class="section-lg background bg-soft pb-1 overflow-hidden border-light border-bottom">
             <div class="container">
                 <div class="row text-center justify-content-center wow fadeInDown" data-wow-delay="0.5s" data-wow-duration="3s">
-                    <div class="col-12 col-lg-8 text-center mb-5">
+                    <div class="col-12 col-lg-8 text-center pt-3 mb-4">
                         <h1 class="display-2 pt-5 font-weight-light">{{page.title}}</h1>
                         
-                        <p class="lead font-weight-light mb-3">{{page.subtitle}}</p>
+                        <p class="lead font-weight-light">{{page.subtitle}}</p>
                     </div>
 
-                    <div class="col-12 col-lg-6 bg-primary alert shadow-inset fade show mb-6" role="alert">
+                    <div class="col-10 col-lg-6 alert shadow-inset fade show mb-8" role="alert">
                         <span class="alert-inner--text z-2">
-                            <span class="alert-inner--icon text-danger"><span class="fas fa-exclamation-circle"></span></span>
-                            <strong class="text-danger">Warning!</strong> {{page.disclaimer}}
+                            <span class="alert-inner--icon"><span class="fas fa-exclamation-circle"></span></span>
+                            <strong>Warning!</strong> {{page.disclaimer}}
                         </span>
-                    </div>
+		    </div>
                 </div>
             </div>
         </section>
@@ -183,7 +203,7 @@
                         <div class="row">
 
                             {% for cat in category.all %}
-                            <div class="col-6 col-lg-12 mb-5 wow fadeInUp" data-wow-duration="2s">
+                            <div class="col-6 col-lg-12 mb-5 wow fadeInUp" data-wow-duration="1s">
 
                                 <div class="mb-2">
                                     <span class="h6 font-weight-bold">{{cat.title}}</span>

@@ -1,7 +1,7 @@
 #loading{
-	/*background-color: #d64700;*/
-	background-image: radial-gradient(circle at 50% -20.71%, #6c3f60 0, #61355d 16.67%, #542a5b 33.33%, #441f59 50%, #301657 66.67%, #121056 83.33%, #000d56 100%);
-	/*background-image: linear-gradient(to top left, #9708CC, #43CBFF);*/
+	background-color: #4B0082;
+	/*background-image: radial-gradient(circle at 50% -20.71%, #6c3f60 0, #61355d 16.67%, #542a5b 33.33%, #441f59 50%, #301657 66.67%, #121056 83.33%, #000d56 100%);*/
+	/*background-image: linear-gradient(to top left, #106AD2, #A32CDF);*/
 	height: 100%;
 	width: 100%;
 	position: fixed;
