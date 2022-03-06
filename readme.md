@@ -2,6 +2,8 @@
 
 > Un artista copia, un gran artista roba (Pablo Picasso).
 
+![header_picture](.github/readme_header.jpg)
+
 Мой блог про инфобез. Зачем, а главное зачем этот сайт создан?
 
 - в образовательных целях, чтобы фиксировать результаты самообразования;
