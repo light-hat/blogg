@@ -1,8 +1,8 @@
-<h1 align="center">Area 51</h1>
-
 <p align="center">
 <img src=".github/chip.png" alt="logo">
 </p>
+
+<h1 align="center">Area 51</h1>
 
 Мой блог про инфобез. Зачем, а главное зачем этот сайт создан?
 
