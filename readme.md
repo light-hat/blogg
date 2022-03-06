@@ -1,4 +1,4 @@
-# Area 51
+<h1 align="center">Area 51</h1>
 
 > Un artista copia, un gran artista roba (Pablo Picasso).
 
