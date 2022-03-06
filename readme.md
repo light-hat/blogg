@@ -1,8 +1,8 @@
 <h1 align="center">Area 51</h1>
 
-> Un artista copia, un gran artista roba (Pablo Picasso).
-
-![header_picture](.github/readme_header.jpg)
+<p align="center">
+<img src=".github/chip.png" alt="logo">
+</p>
 
 Мой блог про инфобез. Зачем, а главное зачем этот сайт создан?
 
@@ -11,6 +11,8 @@
 - как приложение к портфолио;
 
 - ~~ну и просто чтобы выпендриться.~~
+
+![header_picture](.github/readme_header.jpg)
 
 ## Что осталось в проекте реализовать?
 
@@ -341,3 +343,5 @@ python3 call_of_beauty.py -i <файл с кодом> -o <новый файл>
 - для backend использовался python-фреймворк `Django`;
 
 - В качестве WYSIWYG-редактора в админку django был интегрирован `CKEditor`.
+
+> Un artista copia, un gran artista roba (Pablo Picasso).
