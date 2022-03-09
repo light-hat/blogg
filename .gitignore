@@ -86,4 +86,5 @@ local_settings.py
 prod_settings.py
 
 .env
+venv/
 db.sqlite3
