@@ -179,17 +179,17 @@
 
         <!-- Section with icon boxes -->
         <section id="start" class="section section-lg">
-            <div class="container">
+            <div class="container wow fadeInDown" data-duration="2s">
 
                 <!-- Header -->
                 <div class="row justify-content-center">
                     <div class="col-lg-8 mb-5 text-center">
-                        <h1 class="font-weight-light pt-5 wow fadeInUp" data-duration="1s">Добро пожаловать!</h1>
-                        <p class="lead wow fadeInUp" data-duration="1s">Этот блог посвящен информационной безопасности. Тематика публикаций на сайте представлена ниже.</p>
+                        <h1 class="font-weight-light pt-5">Добро пожаловать!</h1>
+                        <p class="lead">Этот блог посвящен информационной безопасности. Тематика публикаций на сайте представлена ниже.</p>
                     </div>
                 </div>
 
-                <div class="row justify-content-center wow fadeInUp" data-duration="2s">
+                <div class="row justify-content-center">
                     
                     {% for cat in category.all %}
                     <!-- One icon box -->
@@ -210,15 +210,15 @@
 
         <!-- Section with last articles -->
         <section class="section">
-            <div class="container">
+            <div class="container wow fadeInDown" data-duration="2s">
                 <div class="row justify-content-center mb-5 element-animation">
-                    <div class="col-lg-8 text-center wow fadeInUp" data-duration="1s">
+                    <div class="col-lg-8 text-center">
                         <h1 class="font-weight-light">Последние статьи</h1>
                         <p class="lead">Несколько последних статей, которые были опубликованы на этом сайте.</p>
                     </div>
                 </div>
 
-                <div class="row justify-content-center wow fadeInUp" data-duration="1s">
+                <div class="row justify-content-center">
 
                     {% for art in arts.all %}
 
@@ -256,10 +256,10 @@
         <!-- Section with blockquote -->
         <section class="section">
             <div class="container">
-                <div class="row justify-content-center element-animation pt-5 mb-5 wow fadeInUp" data-wow-duration="2s">
+                <div class="row justify-content-center element-animation pt-5 mb-5 wow fadeInDown" data-wow-duration="2s">
                     <blockquote class="col-lg-8 blockquote text-center">
                         {{page.quote}}
-                        <footer class="blockquote-footer mt-3 text-dark">{{page.author}}</footer>
+                        <footer class="blockquote-footer mt-4 text-dark">{{page.author}}</footer>
                     </blockquote>
                 </div>
             </div>
@@ -267,7 +267,7 @@
 
         <!-- Section about -->
         <section class="section">
-            <div class="container">
+            <div class="container wow fadeInDown" data-duration="2s">
                 <!-- Header -->
                 <div class="row justify-content-center element-animation">
                     <div class="col-lg-8 mb-6 text-center">
@@ -275,10 +275,10 @@
                     </div>
                 </div>
 
-                <div class="row justify-content-center element-animation wow fadeInDown" data-duration="2s">
+                <div class="row justify-content-center element-animation">
 
                     <!-- Picture -->
-                    <div class="col-12 col-lg-6 col-xl-3 mb-5 justify-content-center">
+                    <div class="col-8 col-lg-6 col-xl-3 mb-5 justify-content-center">
                         <div class="card bg-primary shadow-inset border-light organic-radius p-3">
                             <img class="organic-radius img-fluid" src="{{page.avatar.url}}"/>
                         </div>

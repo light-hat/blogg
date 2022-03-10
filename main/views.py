@@ -8,5 +8,5 @@ class HomePageView(View):
     def get(self, request):
         page = Page.objects.all()
         category = Category.objects.all()
-        articles = Article.objects.all()[:3]
+        articles = Article.objects.all().order_by("-id")[:3]
         return render(request, 'main/page.html', { 'page': page[0], 'category': category, 'arts': articles })
