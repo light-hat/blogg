@@ -20,7 +20,6 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'main',
     'articles',
-    'security',
 ]
 
 MIDDLEWARE = [
@@ -31,7 +30,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'area51.middleware.filter_ip_middleware.FilterIPMiddleware',
 ]
 
 ROOT_URLCONF = 'area51.urls'
